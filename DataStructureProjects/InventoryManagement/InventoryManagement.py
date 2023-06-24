@@ -13,23 +13,26 @@ def view_items(items_dict):
       for item, quantity in items_dict.items():
           print(f"\t{item}: {quantity}")
 
-def validate_item_input(item):
-    if not item.strip():
-        print("Invalid input. Please enter a valid item name.")
-        return False
-    return True
+def validate_item_input():
+  while True:
+    item = input("Please enter a valid item name: ")
+    if item.strip().isalpha():
+        return item
+    print("Invalid input. Please enter a valid item name.")
 
 def validate_quantity_input(quantity):
-    if quantity <= 0:
-        print("Invalid input. Please enter a positive quantity.")
-        return False
+  while True:
+    if not str(quantity).strip() or not str(quantity).isdigit() or int(quantity) <= 0:
+      print("Invalid input. Please enter a positive integer quantity.")
+      return None
     return True
 
 def validate_option_input(input, allowed_options):
+  while True:
     if input.lower() not in allowed_options:
         print("Invalid input. Please enter a valid option.")
         wait_for_enter()
-        return False
+        return None
     return True
 
 def wait_for_enter():
@@ -42,24 +45,27 @@ while True:
     allowed_options = ['add', 'view', 'quit']
     if not validate_option_input(option, allowed_options):
       continue
-    if option == 'quit':
+    if option.lower() == 'quit':
         print("Thank you for using VexIM.")
         break
-    elif option == 'add':
-      item = input("What would you like to add to your inventory: ").lower()
-      if not validate_item_input(item):
-          # wait_for_enter()
-          continue
-
-      quantity = int(input("Please enter the quantity to add: "))
+    elif option.lower() == 'add':
+      item = validate_item_input()
+      # item = validate_item_input("What would you like to add to your inventory: ").lower()
+      #if not validate_item_input(item):
+      #    continue
+      quantity = input("Please enter the quantity to add: ")
       if not validate_quantity_input(quantity):
-          # wait_for_enter()   
           continue
-
+      # item = str(input("What would you like to add to your inventory: ").lower())
+      # item = validate_item_input(item)
+  
+      # quantity = int(input("Please enter the quantity to add: "))
+      # quantity = validate_quantity_input(quantity)
+      
       itemsDict.setdefault(item, 0)
-      itemsDict[item] += quantity
-      print(f"You have added {quantity} {item}{'s' if quantity > 1 else ''}. Total count: {itemsDict[item]}")
-      input("Press Enter to continue...")
+      itemsDict[item] += int(quantity)
+      print(f"You have added {quantity} {item}{'s' if int(quantity) > 1 else ''}. Total count: {itemsDict[item]}")
+      wait_for_enter()
 
     elif option == 'view':
         view_items(itemsDict)
