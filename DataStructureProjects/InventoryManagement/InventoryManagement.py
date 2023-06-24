@@ -3,14 +3,24 @@
 print("Salutations. I am VexIM, your Inventory Management program.") # Validate Encrpt eXamine Inventory Management (WIP)
 itemsDict = {}
 
-def add_item():
-  item = input("Please tell me what you would like to add to your inventory: ")
-  quantity = int(input("Enter the quantity of the item: "))
+def view_items(items_dict):
+    print("Here is your inventory:")
+    for item, quantity in items_dict.items():
+        print(f"{item}: {quantity}")
 
-add_item()
+while True:
+    option = input("Enter 'add' to add an item, 'view' to view the inventory, or 'quit' to exit: ")
 
-# print("Here is your inventory: " + str(itemsDict))
-print(f"Here is your inventory: {itemsDict}")
+    if option == 'quit':
+        break
+    elif option == 'add':
+        item = input("Please tell me what you would like to add to your inventory: ")
+        itemsDict.setdefault(item, 0)
+        itemsDict[item] += 1
+    elif option == 'view':
+        view_items(itemsDict)
+    else:
+        print("Invalid option. Please try again.")
 
   # # Add item to dictionary
   # itemsDict.setdefault(item, quantity)
