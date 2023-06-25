@@ -1,23 +1,25 @@
 # Develop an inventory management system where you can keep track of available items and their quantities.
 import os 
 import time
+from requests.structures import CaseInsensitiveDict
 
 print("Salutations. I am VexIM, your Inventory Management program.") # Validate Encrypt eXamine Inventory Management (WIP)
 
+#items_dict = CaseInsensitiveDict()
 items_dict = {}
+
 def validate_option_input(user_input, allowed_options):
     while True:
         if user_input.lower() in allowed_options:
             return user_input.lower()
         print("Invalid input. Please enter a valid option.")
         wait_for_enter()
-       # user_input = input("Enter 'add' to add an item, 'view' to view the inventory, or 'quit' to exit: ")
 
 def validate_item_input():
   while True:
     item = input("Please enter a valid item name: ")
     if item.strip().isalpha():
-        return item.capitalize()
+        return item.lower()
     print("Invalid input. Please enter a valid item name.")
 
 def validate_quantity_input():
@@ -31,17 +33,20 @@ def view_items(items_dict):
     if not items_dict:
         print("The inventory is empty.")
     else:
-      print("Here is your inventory:")
-      for item, quantity in items_dict.items():
+        print("Here is your inventory:")
+        for item, quantity in items_dict.items():
           print(f"\t{item}: {quantity}")
+        wait_for_enter()  
 
 def add_item(items_dict):
     item = validate_item_input()
     quantity = validate_quantity_input()
     items_dict.setdefault(item, 0)
     items_dict[item] += int(quantity)
+    print(f"You have added {quantity} {item.capitalize()}{'s' if int(quantity) > 1 else ''}. Total count: {items_dict[item]}")
+    wait_for_enter()
+
     #print(f"You have added {quantity} {item.capitalize()}{'s' if quantity > 1 else ''}. Total count: {items_dict[item]}")
-    print(f"You have added {quantity} {item}{'s' if int(quantity) > 1 else ''}. Total count: {items_dict[item]}")
 
 def wait_for_enter():
     input("Press Enter to continue...")
@@ -51,9 +56,9 @@ wait_for_enter()
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
     print("Salutations. I am VexIM, your Inventory Management program.")
-    items_dict = {}
     
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
         option = input("Enter 'add' to add an item, 'view' to view the inventory, or 'quit' to exit: ")
         option = validate_option_input(option, ['add', 'view', 'quit'])
 
