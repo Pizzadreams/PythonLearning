@@ -24,3 +24,13 @@
 
   *  Testing: The program will be tested with various scenarios, including adding items, removing items, updating quantities, and viewing the inventory, to ensure it functions correctly.
 
+
+  ## Revision History
+
+| Version | Date       | Description                        |
+|---------|------------|------------------------------------|
+| 1.0.0   | 2023-06-23 | Initial code                       |
+| 1.1.0   | 2023-06-24 | Added methods and a main()         |
+| 1.2.0   | 2023-06-24 | Using methods within the main()    |
+| 1.3.0   | 2022-06-25 | Refactored methods                 |
+

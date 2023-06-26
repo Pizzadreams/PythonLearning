@@ -14,6 +14,7 @@ def validate_option_input(user_input, allowed_options):
             return user_input.lower()
         print("Invalid input. Please enter a valid option.")
         wait_for_enter()
+        user_input = input("Enter 'add' to add an item, 'view' to view the inventory, or 'quit' to exit: ")
 
 def validate_item_input():
   while True:
@@ -35,7 +36,7 @@ def view_items(items_dict):
     else:
         print("Here is your inventory:")
         for item, quantity in items_dict.items():
-          print(f"\t{item}: {quantity}")
+          print(f"\t{item.capitalize()}: {quantity}")
         wait_for_enter()  
 
 def add_item(items_dict):
@@ -43,7 +44,7 @@ def add_item(items_dict):
     quantity = validate_quantity_input()
     items_dict.setdefault(item, 0)
     items_dict[item] += int(quantity)
-    print(f"You have added {quantity} {item.capitalize()}{'s' if int(quantity) > 1 else ''}. Total count: {items_dict[item]}")
+    print(f"You have added {quantity} {item.capitalize()}{'(s)'}. Total count: {items_dict[item]}")
     wait_for_enter()
 
     #print(f"You have added {quantity} {item.capitalize()}{'s' if quantity > 1 else ''}. Total count: {items_dict[item]}")
@@ -54,11 +55,11 @@ def wait_for_enter():
 wait_for_enter()
 
 def main():
-    os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("Salutations. I am VexIM, your Inventory Management program.")
     
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
+        os.system('cls' if os.name == 'nt' else 'clear')
         option = input("Enter 'add' to add an item, 'view' to view the inventory, or 'quit' to exit: ")
         option = validate_option_input(option, ['add', 'view', 'quit'])
 
@@ -74,5 +75,5 @@ def main():
             print("Invalid option. Please try again.")
 
 if __name__ == '__main__':
-    os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
+    os.system('cls' if os.name == 'nt' else 'clear')
     main()
