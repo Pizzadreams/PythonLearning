@@ -2,11 +2,16 @@ import os
 os.system('cls' if os.name == 'nt' else 'clear')
 
 # Create a tuple of animal records
-def display_animals(animals):
-    print("This is a basic program using the tuple data structure.\n")
-    print("'Type' of animals:", type(animals).__name__ + "\n") # returning the name of the class as a string (add .__name__)
-
-    # Display the details of each animal
+def display_animals():
+    animals = (
+        ("Lion", "Male", 5),
+        ("Elephant", "Female", 10),
+        ("Giraffe", "Male", 7),
+        ("Tiger", "Female", 4),
+    )
+    
+    print("'Type' of animals:", type(animals).__name__)
+    
     for animal in animals:
         species, sex, age = animal
         print("Species:", species)
@@ -14,13 +19,22 @@ def display_animals(animals):
         print("Age:", age)
         print()
 
-# Create a tuple of animal records
-animals = (
-    ("Lion", "Male", 5),
-    ("Elephant", "Female", 10),
-    ("Giraffe", "Male", 7),
-    ("Tiger", "Female", 4),
-)
+def display_cars():
+    cars = (
+        ("Toyota", "Camry", 2020),
+        ("Honda", "Accord", 2014),
+        ("Ford", "Mustang", 2011),
+        ("Chevrolet", "Cruze", 2017),
+    )
 
-# Call the function with the animals tuple
-display_animals(animals)
+    print("'Type' of cars:", type(cars).__name__)
+
+    for make, model, year in cars:
+        print("Make:", make)
+        print("Model:", model)
+        print("Year:", year)
+        print()
+
+
+display_animals()
+display_cars()
