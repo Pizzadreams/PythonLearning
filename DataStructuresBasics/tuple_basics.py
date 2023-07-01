@@ -10,8 +10,10 @@ def display_animals():
         ("Tiger", "Female", 4),
     )
     
+    # Transpose the tuple to return the iterator of tuples 
     transposed_animals = zip(*animals)
 
+    # Display the type of 'animals' by obtaining the string representation of the class name.
     print("'Type' of animals:", type(animals).__name__)
 
     # Display animals side by side
@@ -19,8 +21,10 @@ def display_animals():
         animal_info = " | ".join(str(info).ljust(8) for info in animal) # convert each item in the 'animal' tuple to a string, and separate them by the '|'
         print(animal_info)
     print()
+
     # for animal in animals:
-    #     species, sex, age in animal
+    # # use "= animal" because  the for loop uses tuple unpacking to assign the values of each element in the 'animal' tuple to its respective variables
+    #     species, sex, age = animal 
     #     print("Species:", species)
     #     print("Sex:", sex)
     #     print("Age:", age)
