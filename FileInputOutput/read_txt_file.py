@@ -12,6 +12,7 @@ def read_text_file(file_path):
 # file_path = input("Enter the path to your file: ")
 # file_content = read_text_file(file_path) # holds the content of the file
 
-file_content = read_text_file(input("Enter the path to your file: "))
-print(file_content)
+if __name__ == "__main__":
+    file_content = read_text_file(input("Enter the path to your file: "))
+    print(file_content)
 
