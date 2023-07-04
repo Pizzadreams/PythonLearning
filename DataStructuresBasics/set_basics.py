@@ -1,9 +1,9 @@
 def find_common_elements(set1, set2):
-    common_elements = set1.intersection(set2)
+    common_elements = set1.intersection(set2) # reports commonality between the 2 sets
     return common_elements
 
 def find_unique_elements(set1, set2):
-    unique_elements = set1.symmetric_difference(set2)
+    unique_elements = set1.symmetric_difference(set2) # finds unique elements between the 2 sets
     return unique_elements
 
 set1 = {1, 2, 3, 4, 5}
