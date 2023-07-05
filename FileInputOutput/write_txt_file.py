@@ -8,7 +8,7 @@ def write_text_file(file_path, content):
     except IOError: # if an IOError occurs, then the below is printed
         print("An error occurred while writing the file.")
 
-if __name__ == "__main__": # code inside this suite will be exedcuted when it is ran directly as the main module (it won't be executed if the file is imported as a module)
+if __name__ == "__main__": # code inside this suite will be executed when it is ran directly as the main module (it won't be executed if the file is imported as a module)
     file_path = input("Enter the path to your file: ")
     file_content = read_text_file(file_path)
     print("\nThe original file reads:\n" + file_content)
