@@ -37,7 +37,8 @@ def view_items(items_dict):
         print("Here is your inventory:")
         for item, quantity in items_dict.items():
           print(f"\t{item.capitalize()}: {quantity}")
-        wait_for_enter()  
+    
+    wait_for_enter()  
 
 def add_item(items_dict):
     item = validate_item_input()
@@ -45,9 +46,36 @@ def add_item(items_dict):
     items_dict.setdefault(item, 0)
     items_dict[item] += int(quantity)
     print(f"You have added {quantity} {item.capitalize()}{'(s)'}. Total count: {items_dict[item]}")
+    
+    wait_for_enter()
+    #print(f"You have added {quantity} {item.capitalize()}{'s' if quantity > 1 else ''}. Total count: {items_dict[item]}")
+
+def remove_item(items_dict):
+    item = validate_item_input()
+    if item in items_dict:
+        quantity_in_inventory = items_dict[item] # retrieve the current quantity of the item from the dictionary
+        if quantity_in_inventory == 1:
+            del items_dict[item]
+            print(f"{item.capitalize()} has been removed from the inventory.")
+        else:
+            quantity_to_remove = validate_quantity_to_remove(quantity_in_inventory)
+            if quantity_to_remove == quantity_in_inventory:
+                del items_dict[item] # deletes the key from the dictionary if the quantity_to_remove matches the quantity_in_inventory
+                print(f"All {quantity_in_inventory} {item.capitalize()}{'(s)' if quantity_in_inventory > 1 else ''} have been removed from the inventory.")
+            else:
+                items_dict[item] -= quantity_to_remove
+                print(f"{quantity_to_remove} {item.capitalize()}{'(s)' if quantity_to_remove > 1 else ''} have been removed from the inventory.")
+    else:
+        print(f"{item.capitalize()} does not exist in the inventory.")
     wait_for_enter()
 
-    #print(f"You have added {quantity} {item.capitalize()}{'s' if quantity > 1 else ''}. Total count: {items_dict[item]}")
+def validate_quantity_to_remove(max_quantity):
+    '''Validate the quantity to remove from an item when using the 'remove_item()'.'''
+    while True:
+        quantity = input(f"Please enter the quantity to remove (1 to {max_quantity}): ") 
+        if quantity.isdigit() and 1 <= int(quantity) <= max_quantity:
+            return int(quantity)
+        print("Invalid input. Please enter a valid quantity.")
 
 def wait_for_enter():
     input("Press Enter to continue...")
@@ -60,15 +88,16 @@ def main():
     
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
-        option = input("Enter 'add' to add an item, 'view' to view the inventory, or 'quit' to exit: ")
-        option = validate_option_input(option, ['add', 'view', 'quit'])
+        option = input("Enter 'add' to add an item, 'remove' to remove an item, 'view' to view the inventory, or 'quit' to exit: ")
+        option = validate_option_input(option, ['add', 'remove', 'view', 'quit'])
 
         if option == 'quit':
             print("Thank you for using VexIM.")
             break
         elif option == 'add':
             add_item(items_dict)
-        
+        elif option == 'remove':
+            remove_item(items_dict)
         elif option == 'view':
             view_items(items_dict)
         else:
