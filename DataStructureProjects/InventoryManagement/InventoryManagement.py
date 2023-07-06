@@ -63,7 +63,7 @@ def remove_item(items_dict):
                 del items_dict[item] # deletes the key from the dictionary if the quantity_to_remove matches the quantity_in_inventory
                 print(f"All {quantity_in_inventory} {item.capitalize()}{'(s)' if quantity_in_inventory > 1 else ''} have been removed from the inventory.")
             else:
-                items_dict[item] -= quantity_to_remove # remove the amount specified
+                items_dict[item] -= quantity_to_remove # remove the amount specified from the amount if items in the dictionary
                 print(f"{quantity_to_remove} {item.capitalize()}{'(s)' if quantity_to_remove > 1 else ''} have been removed from the inventory.")
     else:
         print(f"{item.capitalize()} does not exist in the inventory.")
