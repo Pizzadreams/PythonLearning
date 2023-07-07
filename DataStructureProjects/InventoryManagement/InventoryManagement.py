@@ -1,7 +1,6 @@
 # Develop an inventory management system where you can keep track of available items and their quantities.
 import os 
 import time
-from requests.structures import CaseInsensitiveDict
 
 print("Salutations. I am VexIM, your Inventory Management program.") # Validate Encrypt eXamine Inventory Management (WIP)
 
@@ -84,6 +83,7 @@ wait_for_enter()
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
+    
     print("Salutations. I am VexIM, your Inventory Management program.")
     
     while True:
