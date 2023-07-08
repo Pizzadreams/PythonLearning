@@ -5,11 +5,15 @@ import os
 # Create the GUI window
 root = tk.Tk()
 root.title("VexIM - Inventory Management Program")
-
+root.geometry("500x350")
 items_dict = {}
 
 def hide_welcome_label():
     label.pack_forget()
+
+def clear_entry_fields():
+    option_entry.delete(0, tk.END)
+    quantity_entry.delete(0, tk.END)
 
 def hide_option_and_quantity_fields():
     option_entry.pack_forget()  # Hide the option_entry field
@@ -22,9 +26,9 @@ def view_items():
     if not items_dict:
         update_display("The inventory is empty.")
     else:
-        update_display("Here is your inventory:")
         for item, quantity in items_dict.items():
-          update_display(f"\t{item.capitalize()}: {quantity}")
+            #update_display("Here is your inventory:")
+            update_display(f"Here is your inventory: \n{item.capitalize()}: {quantity}")
 
 """Add item(s) to the inventory with the help of validation methods for item and quantity."""
 def add_item():
@@ -33,17 +37,26 @@ def add_item():
     item = validate_item_input()
     quantity = validate_quantity_input()
     quantity_entry.pack()
-    # update_display(f"You have added {quantity} {item.capitalize()}{'(s)'}. Total count: {items_dict[item]}")
-    
-    if quantity is not None:
+
+    try: # Ensure the quantity and items are not 'None'
+        if quantity is None:
+            raise ValueError("Invalid quantity. Please enter a positive quantity.")
+        if item is None:
+            raise ValueError("Invalid item. Please enter a valid item name.")
+        
         items_dict.setdefault(item, 0)
         items_dict[item] += quantity
         update_display(f"You have added {quantity} {item.capitalize()}{'(s)'}. Total count: {items_dict[item]}")
+    except ValueError as e:
+        update_display(str(e))
+
+    clear_entry_fields()
 
 """Removes item(s) from the inventory with help of validate_quantity_to_remove()"""
 def remove_item():
     hide_welcome_label()
-    # TODO
+    option_entry.pack()
+    quantity_entry.pack()
 
     item = validate_item_input()
     if item in items_dict:
@@ -61,6 +74,8 @@ def remove_item():
                 update_display(f"{quantity_to_remove} {item.capitalize()}{'(s)' if quantity_to_remove > 1 else ''} have been removed from the inventory.")
     else:
         update_display(f"{item.capitalize()} does not exist in the inventory.")
+    
+    clear_entry_fields()
 
 def validate_option_input(user_input, allowed_options):
     while True:
@@ -105,31 +120,27 @@ def quit_program():
 quantity_entry = tk.Entry(root)
 option_entry = tk.Entry(root)
 
-display_label = tk.Label(root, text="Salutations. I am VexIM, your Inventory Management program.")
+display_label = tk.Label(root, text="I am VexIM, your Inventory Management program.", font=("Arial", 14))
 display_label.pack()
 
 # Label for instructions with options
-label = tk.Label(root, text="Welcome to VexIM. Please select an option:")
+label = tk.Label(root, text="Please select an option:", font=("Arial", 12))
 label.pack()
 
 # Button for adding an item
-add_button = tk.Button(root, text="Add", command=add_item)
+add_button = tk.Button(root, text="Add", command=add_item, font=("Arial", 12))
 add_button.pack()
 
 # Button for removing an item
-remove_button = tk.Button(root, text="Remove", command=remove_item)
+remove_button = tk.Button(root, text="Remove", command=remove_item, font=("Arial", 12))
 remove_button.pack()
 
 # Button for viewing items
-view_button = tk.Button(root, text="View", command=view_items)
+view_button = tk.Button(root, text="View", command=view_items, font=("Arial", 12))
 view_button.pack()
 
 # Button for quitting the program
-quit_button = tk.Button(root, text="Quit", command=quit_program)
+quit_button = tk.Button(root, text="Quit", command=quit_program, font=("Arial", 12))
 quit_button.pack()
 
 root.mainloop()
-
-# if __name__ == '__main__':
-#     # os.system('cls' if os.name == 'nt' else 'clear')
-#     main()
