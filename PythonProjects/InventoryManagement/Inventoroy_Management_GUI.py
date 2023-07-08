@@ -23,34 +23,45 @@ def view_items():
     hide_welcome_label()
     hide_option_and_quantity_fields()
 
+
     if not items_dict:
         update_display("The inventory is empty.")
     else:
-        for item, quantity in items_dict.items():
-            #update_display("Here is your inventory:")
-            update_display(f"Here is your inventory: \n{item.capitalize()}: {quantity}")
+        inventory_text = "Here is your inventory:\n"
+        for item, quantity in items_dict.items(): # Concatenate the inventory items 
+            inventory_text += f"{item.capitalize()}: {quantity}\n" 
+        update_display(inventory_text)
 
 """Add item(s) to the inventory with the help of validation methods for item and quantity."""
 def add_item():
     hide_welcome_label()
     option_entry.pack()
-    item = validate_item_input()
-    quantity = validate_quantity_input()
     quantity_entry.pack()
-
-    try: # Ensure the quantity and items are not 'None'
-        if quantity is None:
-            raise ValueError("Invalid quantity. Please enter a positive quantity.")
-        if item is None:
-            raise ValueError("Invalid item. Please enter a valid item name.")
+    
+    update_display("Please add a valid item and quantity in the text fields.")
+    
+    # Check if the option_entry and quantity_entry widgets are in the window.
+    if option_entry.winfo_ismapped() and quantity_entry.winfo_ismapped():
+        update_display("Please add a valid item and quantity in the text fields.")
         
-        items_dict.setdefault(item, 0)
-        items_dict[item] += quantity
-        update_display(f"You have added {quantity} {item.capitalize()}{'(s)'}. Total count: {items_dict[item]}")
-    except ValueError as e:
-        update_display(str(e))
+        item = validate_item_input()
+        quantity = validate_quantity_input()
 
-    clear_entry_fields()
+        try: # Ensure the quantity and items are not 'None'
+            if quantity is None:
+                raise ValueError("Invalid quantity. Please enter a positive quantity.")
+            if item is None:
+                raise ValueError("Invalid item. Please enter a valid item name.")
+            
+            items_dict.setdefault(item, 0)
+            items_dict[item] += quantity
+            update_display(f"You have added {quantity} {item.capitalize()}{'(s)'}. Total count: {items_dict[item]}")
+        except ValueError as e:
+            update_display(str(e))
+            
+        clear_entry_fields()
+    else:
+        quantity = None  # Default value when fields are not visible
 
 """Removes item(s) from the inventory with help of validate_quantity_to_remove()"""
 def remove_item():
@@ -114,7 +125,7 @@ def update_display(text):
 def quit_program():
     hide_welcome_label()
     hide_option_and_quantity_fields()
-    update_display("Thank you for using VexIM")
+    update_display("Thank you for using VexIM.")
     root.after(2000, root.destroy)
 
 quantity_entry = tk.Entry(root)
