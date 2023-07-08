@@ -29,12 +29,12 @@
 
   ## Revision History
 
-| Version | Date       | Description                        |
-|---------|------------|------------------------------------|
-| 1.0.0   | 2023-06-23 | Initial code                       |
-| 1.1.0   | 2023-06-24 | Added methods and a main()         |
-| 1.2.0   | 2023-06-24 | Using methods within the main()    |
-| 1.3.0   | 2023-06-25 | Refactored methods                 |
-| 1.4.0   | 2023-07-06 | Added remove_item()                |
-| 1.5.0   | 
+| Version | Date       | Description                                |
+|---------|------------|--------------------------------------------|
+| 1.0.0   | 2023-06-23 | Initial code                               |
+| 1.1.0   | 2023-06-24 | Added methods and a main()                 |
+| 1.2.0   | 2023-06-24 | Using methods within the main()            |
+| 1.3.0   | 2023-06-25 | Refactored methods                         |
+| 1.4.0   | 2023-07-06 | Added remove_item()                        |
+| 2.0.0   | 2023-07-08 | Implement logic with Tkinter (GUI toolkit) |
 
