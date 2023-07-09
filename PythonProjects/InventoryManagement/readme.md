@@ -1,6 +1,6 @@
 # Iventory Management program (VexIM)
 
-## Develop an inventory management system where you can keep track of available items and their quantities.
+## Develop an inventory management system where you can keep track of items added and their quantities.
 
 ### Goals:
 
@@ -24,7 +24,7 @@
 
   *  Testing: The program will be tested with various scenarios, including adding items, removing items, updating quantities, and viewing the inventory, to ensure it functions correctly.
 
-  * GUI: Experiment with a GUI toolkit to allow interactivity within the application. Learn about widgets and functions to manage user interface components.
+  * GUI: Experiment with a GUI toolkit to allow interactivity within the application. Learn about widgets and functions to manage user interface components. 
 
 
   ## Revision History
@@ -37,4 +37,5 @@
 | 1.3.0   | 2023-06-25 | Refactored methods                         |
 | 1.4.0   | 2023-07-06 | Added remove_item()                        |
 | 2.0.0   | 2023-07-08 | Implement logic with Tkinter (GUI toolkit) |
+| 2.1.0   | 2023-07-08 | remove_item() logic with GUI fixed         | 
 
