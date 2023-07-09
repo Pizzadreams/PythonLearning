@@ -69,24 +69,53 @@ def remove_item():
     option_entry.pack()
     quantity_entry.pack()
 
-    item = validate_item_input()
-    if item in items_dict:
-        quantity_in_inventory = items_dict[item] # retrieve the current quantity of the item from the dictionary
-        if quantity_in_inventory == 1:
-            del items_dict[item]
-            update_display(f"{item.capitalize()} has been removed from the inventory.")
-        else: # if quantity to remove is less than the current quantity in the inventory, the 'else' will execute
-            quantity_to_remove = validate_quantity_to_remove(quantity_in_inventory)
-            if quantity_to_remove == quantity_in_inventory:
-                del items_dict[item] # deletes the key from the dictionary if the quantity_to_remove matches the quantity_in_inventory
-                update_display(f"All {quantity_in_inventory} {item.capitalize()}{'(s)' if quantity_in_inventory > 1 else ''} have been removed from the inventory.")
-            else:
-                items_dict[item] -= quantity_to_remove # remove the amount specified from the amount if items in the dictionary
-                update_display(f"{quantity_to_remove} {item.capitalize()}{'(s)' if quantity_to_remove > 1 else ''} have been removed from the inventory.")
-    else:
-        update_display(f"{item.capitalize()} does not exist in the inventory.")
+    try:
+        item = validate_item_input()
+        if item in items_dict:
+            quantity_in_inventory = items_dict[item] # retrieve the current quantity of the item from the dictionary
+            if quantity_in_inventory == 1:
+                del items_dict[item]
+                update_display(f"{item.capitalize()} has been removed from the inventory.")
+            else: # if quantity to remove is less than the current quantity in the inventory, the 'else' will execute
+                quantity_to_remove = validate_quantity_to_remove(quantity_in_inventory)
+                if quantity_to_remove == quantity_in_inventory:
+                    del items_dict[item] # deletes the key from the dictionary if the quantity_to_remove matches the quantity_in_inventory
+                    update_display(f"All {quantity_in_inventory} {item.capitalize()}{'(s)' if quantity_in_inventory > 1 else ''} have been removed from the inventory.")
+                else:
+                    items_dict[item] -= quantity_to_remove # remove the amount specified from the amount if items in the dictionary
+                    update_display(f"{quantity_to_remove} {item.capitalize()}{'(s)' if quantity_to_remove > 1 else ''} have been removed from the inventory.")
+        else:
+            update_display(f"{item.capitalize()} does not exist in the inventory.")
+    except AttributeError:
+        update_display("Invalid item. Please enter a valid item name.")
+    except ValueError as e:
+        update_display(str(e))
     
     clear_entry_fields()
+
+# def remove_item():
+#     hide_welcome_label()
+#     option_entry.pack()
+#     quantity_entry.pack()
+
+#     item = validate_item_input()
+#     if item in items_dict:
+#         quantity_in_inventory = items_dict[item] # retrieve the current quantity of the item from the dictionary
+#         if quantity_in_inventory == 1:
+#             del items_dict[item]
+#             update_display(f"{item.capitalize()} has been removed from the inventory.")
+#         else: # if quantity to remove is less than the current quantity in the inventory, the 'else' will execute
+#             quantity_to_remove = validate_quantity_to_remove(quantity_in_inventory)
+#             if quantity_to_remove == quantity_in_inventory:
+#                 del items_dict[item] # deletes the key from the dictionary if the quantity_to_remove matches the quantity_in_inventory
+#                 update_display(f"All {quantity_in_inventory} {item.capitalize()}{'(s)' if quantity_in_inventory > 1 else ''} have been removed from the inventory.")
+#             else:
+#                 items_dict[item] -= quantity_to_remove # remove the amount specified from the amount if items in the dictionary
+#                 update_display(f"{quantity_to_remove} {item.capitalize()}{'(s)' if quantity_to_remove > 1 else ''} have been removed from the inventory.")
+#     else:
+#         update_display(f"{item.capitalize()} does not exist in the inventory.")
+    
+#     clear_entry_fields()
 
 def validate_option_input(user_input, allowed_options):
     while True:
