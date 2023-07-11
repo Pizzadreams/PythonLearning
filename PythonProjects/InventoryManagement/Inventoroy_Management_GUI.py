@@ -5,7 +5,7 @@ import os
 # Create the GUI window
 root = tk.Tk()
 root.title("VexIM - Inventory Management Program")
-root.geometry("500x350")
+root.geometry("550x400")
 items_dict = {}
 
 def hide_welcome_label():
@@ -83,12 +83,12 @@ def remove_item():
                     del items_dict[item]
                     update_display(f"{item.capitalize()} has been removed from the inventory.")
                 elif quantity is not None and quantity > quantity_in_inventory:
-                    update_display(f"The quantity to remove exceeds the available quantity of {item.capitalize()} in the inventory.")
-                elif quantity is not None:
+                    update_display(f"The quantity to remove exceeds the available \nquantity of {item.capitalize()} in the inventory.")
+                elif quantity is not None: # check if quantity is not 'None' before performing the comparison or subtracting it from the inventory
                     items_dict[item] -= quantity
                     update_display(f"{quantity} {item.capitalize()}{'(s)' if quantity > 1 else ''} have been removed from the inventory.")
                 else:
-                    update_display("Invalid input. Please enter a positive quantity.")
+                    update_display("Invalid input. Please enter a positive number.")
             else:
                 update_display(f"{item.capitalize()} does not exist in the inventory.")
         except AttributeError:
