@@ -161,6 +161,13 @@ def quit_program():
     hide_option_and_quantity_fields()
     update_display("Thank you for using VexIM.")
     root.after(2000, root.destroy)
+    
+    # Hide all buttons
+    add_button.pack_forget()
+    remove_button.pack_forget()
+    view_button.pack_forget()
+    quit_button.pack_forget()
+    
 
 quantity_entry = tk.Entry(root)
 option_entry = tk.Entry(root)
