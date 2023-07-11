@@ -66,8 +66,8 @@ def add_item():
 """Removes item(s) from the inventory with help of validate_quantity_to_remove()"""
 def remove_item():
     hide_welcome_label()
-    option_entry.pack()
-    quantity_entry.pack()
+    option_entry.pack(side=tk.RIGHT)
+    quantity_entry.pack(side=tk.RIGHT)
 
     # Check if the option_entry and quantity_entry widgets are in the window.
     if option_entry.winfo_ismapped() and quantity_entry.winfo_ismapped():
