@@ -12,7 +12,8 @@ def read_text_file(file_path):
 # file_path = input("Enter the path to your file: ")
 # file_content = read_text_file(file_path) # holds the content of the file
 
-if __name__ == "__main__":
+# this ensures that it only runs when the script is invoked directly from the command line or executed as a standalone script.
+if __name__ == "__main__": # checks if the current module is the main module being executed.
     file_content = read_text_file(input("Enter the path to your file: "))
     print(file_content)
 
