@@ -1,3 +1,9 @@
+<style>
+body {
+  font-size: 18px;
+}
+</style>
+
 # Pizza Adventure Game
 
 ## Description
@@ -10,6 +16,7 @@ Pizza Adventure Game is a simple Python video game developed using the Pygame li
 
 - Use of the Pygame library to create the game.
 - Control the square's movement using the WASD keys.
+- Implement a scoring system.
 - Main menu: Start the game, access options, and quit the game.
 - Pause menu: Pause and resume the game, restart the level, and return to the main menu.
 - Basic testing of game functionalities.
