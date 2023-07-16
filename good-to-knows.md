@@ -4,7 +4,7 @@ This readme.md provides some important "good-to-knows" about Python.
 
 ## Good-to-Knows
 
-- [Python as an Interpreted Language](#python-as-an-interpreted-language)
+- [Python is an Interpreted Language](#python-is-an-interpreted-language)
 - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
 - [Standard Library and Third-Party Packages](#standard-library-and-third-party-packages)
 - [Programming Paradigms](#programming-paradigms)
@@ -13,7 +13,7 @@ This readme.md provides some important "good-to-knows" about Python.
 - [Sharing Modules](#sharing-modules)
 
 
-## Python as an Interpreted Language
+## Python is an Interpreted Language
 
 Python is an interpreted language, meaning you can run your code without compiling it beforehand. This allows for quick and interactive development, making it easy to test and experiment with your code.
 
@@ -46,25 +46,46 @@ Each data type has its own unique features and methods for manipulation. Underst
 
 Numbers in Python can be integers, floating-point numbers, or complex numbers. They support various arithmetic operations.
 
+    x = 42
+    y = 3.14159
+    z = complex(2, 3)
+
+    print(x)  # Output: 42
+    print(y)  # Output: 3.14159
+    print(z)  # Output: (2+3j)
+
 ### Strings
 
-Strings represent textual data and can be manipulated using various string methods and operations.
+Strings represent textual data. A sequence of characters that are enclosed in quotation marks signify a string. Although strings are immutable, you can perform various operations such as concatenation, slicing, and formatting.
 
-### Lists
+    name = "Toby"
+    greeting = "Hi, " + name
 
-Lists are ordered, mutable collections of items. They allow you to store and manipulate sequences of elements.
+    print(name)     # Output: Toby
+    print(greeting) # Output: Hi, Toby
 
 ### Tuples
 
-Tuples are ordered, immutable collections of items. They are useful for representing fixed collections of values.
+Tuples are similar to lists but are immutable, meaning their elements cannot be modified once defined. They are useful for storing a fixed collection of values that should not be changed. Tuples are often used for returning multiple values from functions or as keys in dictionaries.
+
+### Lists
+
+Lists are mutable, unordered collections of items. They allow you to store and manipulate sequences of elements. Lists are commonly used for managing groups of related data.
+
+    fruits = ["apple", "banana", "orange"]
+    fruits.append("mango")
+
+    print(fruits)       # Output: ['apple', 'banana', 'orange', 'mango']
+    print(fruits[0])    # Output: apple
+    print(len(fruits))  # Output: 4
 
 ### Dictionaries
 
-Dictionaries are unordered, mutable key-value pairs. They provide an efficient way to store and retrieve data using keys.
+Dictionaries are unordered, mutable key-value pairs. They provide an efficient way to store and retrieve data using keys. Dictionaries are used for mapping relationships 
 
 ### Sets
 
-Sets are unordered collections of unique elements. They support mathematical set operations such as union, intersection, and difference.
+Sets are mutable unordered collections of unique elements. They support mathematical set operations such as union(), intersection(), and difference().
 
 
 ## Mutable vs Immutable Data Types
@@ -73,16 +94,23 @@ In Python, data types can be classified as mutable or immutable:
 
 ### Immutable Data Types
 
-Immutable data types are those whose values cannot be modified after they are created. Any attempt to modify an immutable object results in the creation of a new object. Examples of immutable data types in Python include numbers, strings, tuples, and frozensets.
+Immutable data types are those whose values cannot be modified after they are created. Any attempt to modify an immutable object results in the creation of a new object. Examples of immutable data types in Python include <i>numbers</i>, <i>strings</i>, <i>tuples</i>, and <i>frozensets</i>.
 
 ### Mutable Data Types
 
-Mutable data types are those that can be modified after they are created. Changes made to a mutable object directly modify its value. Examples of mutable data types in Python include lists, dictionaries, and sets.
+Mutable data types are those that can be modified after they are created. Changes made to a mutable object directly modify its value. Examples of mutable data types in Python include <i>lists</i>, <i>dictionaries</i>, and <i>sets</i>.
 
 Understanding the distinction between mutable and immutable data types is crucial for proper data manipulation and assignment.
 
 ## <a id="call-by-value-and-call-by-reference-semantics"></a>Call-by-Value and Call-by-Reference Semantics
 In Python, the semantics of function arguments support both call-by-value and call-by-reference semantics.<br>Recall that variables in Python behave as "object references". So we can think of the value stored in the variable as the memory address of the value, and not its actual value.
+
+Call-by-Reference semantics apply if the variable in question refers to a mutable value.
+Call-by-Value semantics apply if the variable in question refers to an immutable value.
+
+Dictionaries, Lists, and Sets (mutable) are always passed into a function by reference. Changes that occur on the variable's data structure within the function's suite are reflected in the calling code.
+
+Integers, Strings, and Tuples (immutable) are always passed by value. Changes to the variable within the function are only for the function and are not reflected in the calling code.
 
 ## Sharing Modules
 When working with Python, you can easily share and reuse modules. These modules are like bundles of code that you can use in different projects. They help you organize your code and make it easier to manage.
