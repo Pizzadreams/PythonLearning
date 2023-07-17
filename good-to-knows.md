@@ -11,6 +11,7 @@ This readme.md provides some important "good-to-knows" about Python.
 - [Mutable vs Immutable Data Types](#mutable-vs-immutable-data-types)
 - [Call-by-Value and Call-by-Reference Semantics](#call-by-value-and-call-by-reference-semantics)
 - [Sharing Modules](#sharing-modules)
+- [PEP 8 Compliance](#pep-8-compliance)
 
 
 ## Python is an Interpreted Language
@@ -47,7 +48,7 @@ Each data type has its own unique features and methods for manipulation. Underst
 Numbers in Python can be integers, floating-point numbers, or complex numbers. They support various arithmetic operations.
 
     x = 42
-    y = 3.14159
+    y = 3.14159 
     z = complex(2, 3)
 
     print(x)  # Output: 42
@@ -103,14 +104,16 @@ Mutable data types are those that can be modified after they are created. Change
 Understanding the distinction between mutable and immutable data types is crucial for proper data manipulation and assignment.
 
 ## <a id="call-by-value-and-call-by-reference-semantics"></a>Call-by-Value and Call-by-Reference Semantics
-In Python, the semantics of function arguments support both call-by-value and call-by-reference semantics.<br>Recall that variables in Python behave as "object references". So we can think of the value stored in the variable as the memory address of the value, and not its actual value.
+In Python, function arguments support both call-by-value and call-by-reference semantics.<br>Recall that variables in Python behave as "object references". So we can think of the value stored in the variable as the memory address of the value, and not its actual value.
 
+
+First, the interpreter looks at the type of the value referred to by the object reference (memory address).
 Call-by-Reference semantics apply if the variable in question refers to a mutable value.
 Call-by-Value semantics apply if the variable in question refers to an immutable value.
 
-Dictionaries, Lists, and Sets (mutable) are always passed into a function by reference. Changes that occur on the variable's data structure within the function's suite are reflected in the calling code.
+Dictionaries, Lists, and Sets - which are mutable - are always passed into a function by reference. Changes that occur on the variable's data structure within the function's suite are reflected in the calling code.
 
-Integers, Strings, and Tuples (immutable) are always passed by value. Changes to the variable within the function are only for the function and are not reflected in the calling code.
+Integers, Strings, and Tuples - which are immutable - are always passed by value. Changes to the variable within the function are only for the function and are not reflected in the calling code.
 
 ## Sharing Modules
 When working with Python, you can easily share and reuse modules. These modules are like bundles of code that you can use in different projects. They help you organize your code and make it easier to manage.
@@ -126,3 +129,9 @@ These are two places where you can find and share Python modules:
 ### Sharing Modules - Resources
 
 For more information about `setuptools`, you can visit the [setup tools install from PyPI link](https://pypi.org/project/setuptools/) and the [PyPA.io site](https://www.pypa.io/).  To learn more about the Python Package Index, checkout the [PyPI website](https://pypi.python.org). These resources provide comprehensive documentation for sharing modules, and information on using `setuptools` effectively.
+
+
+## PEP 8 Compliance
+PEP 8 Compliance is a style guide for Python code. It provides guidelines on code formatting, maintainability, and readability. Having a consistent code style improves code maitenance, collaboration, and reduces risks of bugs.
+
+### To get started with PEP 8
