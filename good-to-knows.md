@@ -115,6 +115,8 @@ Dictionaries, Lists, and Sets - which are mutable - are always passed into a fun
 
 Integers, Strings, and Tuples - which are immutable - are always passed by value. Changes to the variable within the function are only for the function and are not reflected in the calling code.
 
+TL;DR<br> Call-by-Value creates a new variable. And Call-by-Reference passes the reference of the variable and any changes made will affect the original variable.
+
 ## Sharing Modules
 When working with Python, you can easily share and reuse modules. These modules are like bundles of code that you can use in different projects. They help you organize your code and make it easier to manage.
 
