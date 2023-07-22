@@ -137,3 +137,4 @@ For more information about `setuptools`, you can visit the [setup tools install 
 PEP 8 Compliance is a style guide for Python code. It provides guidelines on code formatting, maintainability, and readability. Having a consistent code style improves code maitenance, collaboration, and reduces risks of bugs.
 
 ### To get started with PEP 8
+Visit the [PEP 8 website link](https://www.python.org/dev/peps/pep-0008/) which covers various aspects of writing clean, readable, and consistent Python code (and more).
