@@ -38,20 +38,27 @@ while running:
             running = False
 
     # Update game state
+    pizza_rect = pizza_image.get_rect(topleft=pizza_position)
     player.handle_input()
     player.update()
-
-    # Check for collision with pizza object
-    pizza_rect = pizza_image.get_rect(topleft=pizza_position)
-    if player.rect.colliderect(pizza_rect):
-        # Player has collected the pizza object
-        # TODO
-        print("Pizza collected!")
 
     # Draw game objects
     window.fill((2, 0, 121))
     player.draw(window)
-    #pizza.draw(window)
+   
+    # Calculate the player's destination rect (used for collision detection)
+    player_dest_rect = pygame.Rect(player.position[0] - player.radius, player.position[1] - player.radius, player.radius * 2, player.radius * 2)
+    
+    # Check for collision with pizza object via WASD
+    if player_dest_rect.colliderect(pizza_rect):
+        relative_x = player_dest_rect.left - pizza_position[0]
+        relative_y = player_dest_rect.top - pizza_position[1]
+
+        # Check if the relative position is within the bounds of the pizza image
+        if 0 <= relative_x < pizza_image.get_width() and 0 <= relative_y < pizza_image.get_height():
+            if pizza_mask.get_at((relative_x, relative_y)):
+                # Player has collected the pizza object
+                print("Pizza collected!")
 
     # Draw pizza image
     window.blit(pizza_image, pizza_position)
