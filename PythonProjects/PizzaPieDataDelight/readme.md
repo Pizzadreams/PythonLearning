@@ -18,4 +18,4 @@ Make sure you have the following libraries installed:
 
 You can install these libraries using the following command:
 ```bash
-pip install pandas faker XlsxWriter
+pip install pandas faker XlsxWriter openpyxl
