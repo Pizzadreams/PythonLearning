@@ -17,8 +17,15 @@ for _ in range(num_places):
     pizza_size = fake.random_element(elements=('sm', 'md', 'lg'))
     pizza_style = fake.random_element(elements=('NY', 'Sicilian', 'Chicago', 'Detroit', 'Deep Dish'))
     pizza_sauce = fake.random_element(elements=('tomato', 'white', 'pesto'))
+
+    # Generate unique toppings
     num_toppings = random.randint(1, 5)
-    toppings_list = random.choices(pizza_toppings, k=num_toppings)
+    toppings_list = []
+    while len(toppings_list) < num_toppings:
+        topping = random.choice(pizza_toppings)
+        if topping not in toppings_list:
+            toppings_list.append(topping)
+    
     toppings = ', '.join(toppings_list)  # Convert the list to a comma-separated string
 
     price_slice = fake.random_int(min=5, max=10)
