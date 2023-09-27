@@ -2,7 +2,7 @@
 This project aims to generate pizza-related data using the Faker library and organize it with the Pandas library for data manipulation and analysis.
 
 ## Purpose
-The goal of this project is for me to gain a hands-on understanding of data analysis using the Pandas library in Python. By creating and manipulating pizza-related data, I can practice various Pandas operations such as DataFrame creation, sorting, filtering, and exporting data to Excel files.
+The goal of this project is for me to gain a hands-on understanding of data analysis using the Pandas library in Python. By creating and manipulating pizza-related data, I can practice various Pandas operations such as DataFrame creation, sorting, filtering, and exporting data to Excel files. Add Unit Test code to ensure various functions of the code are functioning correctly.
 
 ## Features
 - Generates random pizza place names using the Faker library.
@@ -10,9 +10,10 @@ The goal of this project is for me to gain a hands-on understanding of data anal
 - Exports the generated data to an Excel file using the XlsxWriter library.
 - *'pizza_data.xlsx' file will overwrite after every code execution
 - Implement test suite with:
- - File Creation: Verifies whether an Excel file was created successfully.
+ - File Creation testing: Verifies whether an Excel file was created successfully.
  - Column Matching: It checks whether the columns in the loaded data from the Excel file match the columns in your original pizza data. This ensures that the data was saved correctly.
- - Data Existence: Optionally, it checks whether the loaded data is not empty. This step is not always necessary, but it can be added for additional verification.
+ - Data Existence: Check whether the loaded data is not empty
+ 
 
 ## Requirements
 Make sure you have the following libraries installed:
