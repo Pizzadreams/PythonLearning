@@ -4,7 +4,7 @@ A captivating rainbow "pinwheel" that uses concentric shapes. Each adorned with 
 
 """
 import turtle
-# Set the screen size and background color
+# Set the screen size and background colors
 screen = turtle.Screen()
 screen.setup(width=1400, height=1400)
 screen.bgcolor('black')
