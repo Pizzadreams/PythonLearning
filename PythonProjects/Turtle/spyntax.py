@@ -11,7 +11,7 @@ screen.bgcolor('black')
 
 rainbow_pen = turtle.Turtle()
 rainbow_pen.pensize(4) 
-rainbow_pen.speed(10)
+rainbow_pen.speed(10) 
 colors = ["red", "orange", "yellow", "green", "blue", "blueviolet", "violet"]
 
 for i in range(300):
