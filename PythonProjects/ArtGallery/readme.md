@@ -9,3 +9,5 @@ Key Features:
 
 - Unsplash API Integration: The app integrates with the Unsplash API to fetch and displays from a collection of high-quality, license-free images for the gallery
 
+### Handling Sensitive Settings
+To ensure that your Unsplash API key is not exposed in your Git repository, the app uses a *settings.py* file to store sensitive settings. This file is excluded from the Git repository using the .gitignore file.
