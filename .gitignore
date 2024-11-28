@@ -1,2 +1,15 @@
 __pycache__/
 *.pyc
+
+# Django-specific ignores
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Exclude the settings.py file
+artgallery/settings.py
