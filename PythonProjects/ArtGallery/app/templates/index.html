@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Art Gallery</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <img src="{{ image_url }}" alt="Random Unsplash Image" class="gallery-image">
+    </div>
+    <button onclick="fetchNewImage()">Get New Image</button>
+
+    <script>
+        function fetchNewImage() {
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
