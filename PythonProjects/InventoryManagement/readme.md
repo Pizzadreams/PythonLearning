@@ -1,4 +1,4 @@
-# Iventory Management program (VexIM)
+# Inventory Management program (VexIM)
 
 ## Develop an inventory management system where you can keep track of items added and their quantities.
 
