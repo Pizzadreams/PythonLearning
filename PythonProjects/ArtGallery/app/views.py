@@ -2,13 +2,13 @@
 import requests
 from django.shortcuts import render
 from django.conf import settings
-import random
 
 def random_image_view(request):
-    # Fetch a random image from Unsplash
     url = f'https://api.unsplash.com/photos/random?client_id={settings.UNSPLASH_ACCESS_KEY}'
     response = requests.get(url)
     
+    print(response.json())  # Debugging 
+
     if response.status_code == 200:
         artwork = response.json()
         image_url = artwork['urls']['regular']

@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import random_image
+from .views import random_image_view
 
 urlpatterns = [
-    path('random-image/', random_image, name='random_image'),
+    path('', random_image_view, name='random_image'),  # Root URL for the gallery
 ]

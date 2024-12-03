@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Gallery</title>
+    <link rel="stylesheet" href="{% static 'gallery/styles.css' %}"> <!-- Optional CSS -->
 </head>
 <body>
     <h1>Art Gallery</h1>
-
+    
     {% if image_url %}
         <div>
             <h2>{{ title }}</h2>
