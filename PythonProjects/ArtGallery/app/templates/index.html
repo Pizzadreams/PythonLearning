@@ -1,28 +1,27 @@
+<!-- gallery/templates/gallery/index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Gallery</title>
-    <style>
-        .gallery-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .gallery-image {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
 </head>
 <body>
-    <div class="gallery-container">
-        <img src="{{ image_url }}" alt="Random Unsplash Image" class="gallery-image">
-    </div>
-    <button onclick="fetchNewImage()">Get New Image</button>
+    <h1>Art Gallery</h1>
 
-    <script>
-        function fetchNewImage() {
-            window.location.href = '/random-image/';  // Redirect to the view that fetches a new image
-        }
-    </script>
+    {% if image_url %}
+        <div>
+            <h2>{{ title }}</h2>
+            <img src="{{ image_url }}" alt="{{ title }}" style="width:300px;height:auto;">
+        </div>
+    {% else %}
+        <p>Error fetching image.</p>
+    {% endif %}
+    
+    <div>
+        <form method="get">
+            <button type="submit" name="action" value="next">Next Random Image</button>
+        </form>
+    </div>
 </body>
 </html>
