@@ -3,7 +3,7 @@ import os
 import sys
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'art_gallery.settings')  # Replace 'art_gallery' with your project name
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ArtGallery.settings')  # Replace 'ArtGallery' with your project name
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
