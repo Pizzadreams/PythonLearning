@@ -4,5 +4,5 @@ from django.template import loader
 from django.http import HttpResponse
 
 def gallery(request):
-    template = loader.get_template('gallery/index.html')
-    return HttpResponse("Hello world!")
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
