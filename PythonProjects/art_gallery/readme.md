@@ -31,3 +31,4 @@ Here are some useful resources I found helpful while working on this project:
 - [GitHub Markdown Guide](https://docs.github.com/en/get-started/writing-on-github/basic-writing-and-formatting-syntax)
 - [Pillow (Python Imaging Library)](https://python-pillow.org/)
 - [Django Girls Tutorial](https://tutorial.djangogirls.org/)
+- [Django Tutorial on W3](https://www.w3schools.com/django/)
