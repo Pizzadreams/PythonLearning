@@ -3,7 +3,15 @@ import random
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
+import json
 
 def gallery(request):
-    random_number = random.randint(1, 1000)
-    return render(request, 'index.html', {'random_number': random_number})
+    paintings = [
+        {"img": "https://picsum.photos/800/600?random=1", "title": "Art 1", "desc": "Lorem ipsum dolor sit amet."},
+        {"img": "https://picsum.photos/800/600?random=2", "title": "Art 2", "desc": "Consectetur adipiscing elit."},
+        {"img": "https://picsum.photos/800/600?random=3", "title": "Art 3", "desc": "Sed do eiusmod tempor."},
+    ]
+    return render(request, 'index.html', {
+        'paintings': paintings,
+        'paintings_json': json.dumps(paintings)
+    })

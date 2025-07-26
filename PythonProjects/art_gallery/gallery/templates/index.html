@@ -1,92 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        .art-frame {
-            display: inline-block;
-            padding: 24px;
-            border: 12px solid #8B5C2A; /* Brown frame color */
-            background: #f5e9da;        /* Light background for matting */
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-            border-radius: 12px;
-            margin: 32px 0;
-        }
-        .art-frame img {
-            display: block;
-            max-width: 100%;
-            border-radius: 4px;
-        }
-        .gallery-controls {
-            margin: 16px 0;
-            text-align: center;
-        }
-        .gallery-controls button {
-            padding: 8px 16px;
-            margin: 0 8px;
-            background: #8B5C2A;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+
 </head>
+    <body>
+        <h1>Art Gallery</h1>
+        
+        <div style="text-align:center;margin-bottom:16px;">
+            <button onclick="window.location.reload();" style="padding:8px 16px;background:#8B5C2A;color:#fff;border:none;border-radius:6px;cursor:pointer;">
+                New Room
+            </button>
+        </div>
 
-<body>
-<h1>Art Gallery</h1>
+        <!-- 3D Gallery Section -->
+        <div id="gallery3d" style="width:100vw;height:80vh;"></div>
 
-<div class="gallery-controls">
-    <button id="prevBtn">&larr; Prev</button>
-    <button id="nextBtn">Next &rarr;</button>
-</div>
+        <!-- Expose Django data to JS -->
+        <script>
+            const paintings = JSON.parse('{{ paintings_json|escapejs }}');
+        </script>
 
-<div class="art-frame">
-    <img id="galleryImage" src="https://picsum.photos/800/600?random={{ random_number }}" alt="Random Art">
-</div>
+        <!-- three.js and your 3D gallery script here -->
+        <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+        <script>
+            // Basic three.js setup
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/(window.innerHeight*0.8), 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight * 0.8);
+            document.getElementById('gallery3d').appendChild(renderer.domElement);
 
-<script>
-    // Generate an array of random image URLs
-    let images = [];
-    for (let i = 0; i < 10; i++) {
-        images.push(`https://picsum.photos/800/600?random=${Math.floor(Math.random()*1000)}`);
-    }
-    let currentIndex = 0;
-    const imgElement = document.getElementById('galleryImage');
+            // Add paintings as planes on a wall
+            const loader = new THREE.TextureLoader();
+            paintings.forEach((painting, i) => {
+                loader.load(painting.img, function(texture) {
+                    const geometry = new THREE.PlaneGeometry(2, 1.5);
+                    const material = new THREE.MeshBasicMaterial({ map: texture });
+                    const mesh = new THREE.Mesh(geometry, material);
+                    mesh.position.set(i * 2.5 - 2.5, 1, -5); // Spread out paintings
+                    scene.add(mesh);
+                });
+            });
 
-    // Set the initial image to match the images array
-    imgElement.src = images[currentIndex];
+            camera.position.z = 2;
+            camera.position.y = 1;
 
-    function showImage(index) {
-        imgElement.src = images[index];
-    }
-
-    document.getElementById('prevBtn').onclick = function() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        showImage(currentIndex);
-    };
-    document.getElementById('nextBtn').onclick = function() {
-        currentIndex = (currentIndex + 1) % images.length;
-        showImage(currentIndex);
-    };
-
-    // Swipe support for touch devices
-    let startX = 0;
-    imgElement.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-    });
-    imgElement.addEventListener('touchend', function(e) {
-        let endX = e.changedTouches[0].clientX;
-        if (endX < startX - 50) {
-            // Swipe left
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
-        } else if (endX > startX + 50) {
-            // Swipe right
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            showImage(currentIndex);
-        }
-    });
-</script>
-
-</body>
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+            }
+            animate();
+        </script>
+    </body>
 </html>
