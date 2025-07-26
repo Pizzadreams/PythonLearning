@@ -16,18 +16,77 @@
             max-width: 100%;
             border-radius: 4px;
         }
+        .gallery-controls {
+            margin: 16px 0;
+            text-align: center;
+        }
+        .gallery-controls button {
+            padding: 8px 16px;
+            margin: 0 8px;
+            background: #8B5C2A;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
-<button onclick="window.location.reload();">New Image</button>
-
 <body>
-
 <h1>Art Gallery</h1>
 
-<div class="art-frame">
-    <img src="https://picsum.photos/800/600?random={{ random_number }}" alt="Random Art">
+<div class="gallery-controls">
+    <button id="prevBtn">&larr; Prev</button>
+    <button id="nextBtn">Next &rarr;</button>
 </div>
+
+<div class="art-frame">
+    <img id="galleryImage" src="https://picsum.photos/800/600?random={{ random_number }}" alt="Random Art">
+</div>
+
+<script>
+    // Generate an array of random image URLs
+    let images = [];
+    for (let i = 0; i < 10; i++) {
+        images.push(`https://picsum.photos/800/600?random=${Math.floor(Math.random()*1000)}`);
+    }
+    let currentIndex = 0;
+    const imgElement = document.getElementById('galleryImage');
+
+    // Set the initial image to match the images array
+    imgElement.src = images[currentIndex];
+
+    function showImage(index) {
+        imgElement.src = images[index];
+    }
+
+    document.getElementById('prevBtn').onclick = function() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    };
+    document.getElementById('nextBtn').onclick = function() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    };
+
+    // Swipe support for touch devices
+    let startX = 0;
+    imgElement.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+    });
+    imgElement.addEventListener('touchend', function(e) {
+        let endX = e.changedTouches[0].clientX;
+        if (endX < startX - 50) {
+            // Swipe left
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        } else if (endX > startX + 50) {
+            // Swipe right
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+    });
+</script>
 
 </body>
 </html>
