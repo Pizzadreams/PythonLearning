@@ -1,57 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
-
+    <title>Art Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        button, a {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 8px;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        button {
+            background-color: #8B5C2A;
+            color: white;
+        }
+        a {
+            background-color: #2A5C8B;
+            color: white;
+        }
+        #images {
+            margin-top: 20px;
+        }
+        #images img {
+            margin: 10px;
+            width: 600px;
+            height: 425px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
-    <body>
-        <h1>Art Gallery</h1>
-        
-        <div style="text-align:center;margin-bottom:16px;">
-            <button onclick="window.location.reload();" style="padding:8px 16px;background:#8B5C2A;color:#fff;border:none;border-radius:6px;cursor:pointer;">
-                New Room
-            </button>
-        </div>
+<body>
+    <h1>Art Gallery</h1>
 
-        <!-- 3D Gallery Section -->
-        <div id="gallery3d" style="width:100vw;height:80vh;"></div>
+    <button onclick="loadNewImages()">New Room</button>
+    <a href="{% url 'gallery3d' %}">Enter 3D Mode</a>
 
-        <!-- Expose Django data to JS -->
-        <script>
-            const paintings = JSON.parse('{{ paintings_json|escapejs }}');
-        </script>
+    <div id="images">
+        <!-- Images will be loaded here -->
+    </div>
 
-        <!-- three.js and your 3D gallery script here -->
-        <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
-        <script>
-            // Basic three.js setup
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/(window.innerHeight*0.8), 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer();
-            renderer.setSize(window.innerWidth, window.innerHeight * 0.8);
-            document.getElementById('gallery3d').appendChild(renderer.domElement);
+    <script>
+        // Function to generate random Picsum image URLs
+        function getRandomImageUrl() {
+            return `https://picsum.photos/800/600?random=${Math.floor(Math.random() * 1000)}`;
+        }
 
-            // Add paintings as planes on a wall
-            const loader = new THREE.TextureLoader();
-            paintings.forEach((painting, i) => {
-                loader.load(painting.img, function(texture) {
-                    const geometry = new THREE.PlaneGeometry(2, 1.5);
-                    const material = new THREE.MeshBasicMaterial({ map: texture });
-                    const mesh = new THREE.Mesh(geometry, material);
-                    mesh.position.set(i * 2.5 - 2.5, 1, -5); // Spread out paintings
-                    scene.add(mesh);
-                });
-            });
+        // Load and display 3 random images
+        function loadNewImages() {
+            const container = document.getElementById('images');
+            container.innerHTML = ''; // Clear existing images
 
-            camera.position.z = 2;
-            camera.position.y = 1;
-
-            function animate() {
-                requestAnimationFrame(animate);
-                renderer.render(scene, camera);
+            for (let i = 0; i < 3; i++) {
+                const img = document.createElement('img');
+                img.src = getRandomImageUrl();
+                img.alt = `Random art ${i + 1}`;
+                container.appendChild(img);
             }
-            animate();
-        </script>
-    </body>
+        }
+
+        // Load images on page load
+        loadNewImages();
+    </script>
+</body>
 </html>

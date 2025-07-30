@@ -15,3 +15,16 @@ def gallery(request):
         'paintings': paintings,
         'paintings_json': json.dumps(paintings)
     })
+
+def gallery3d(request):
+    paintings = [
+        {"img": "https://picsum.photos/800/600?random=1", "title": "Art 1", "desc": "Lorem ipsum dolor sit amet."},
+        {"img": "https://picsum.photos/800/600?random=2", "title": "Art 2", "desc": "Consectetur adipiscing elit."},
+        {"img": "https://picsum.photos/800/600?random=3", "title": "Art 3", "desc": "Sed do eiusmod tempor."},
+    ]
+    return render(request, 'gallery3d.html', {
+        'paintings': paintings,
+        'paintings_json': json.dumps(paintings)
+    })
+
+
