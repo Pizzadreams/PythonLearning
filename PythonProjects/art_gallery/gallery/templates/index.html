@@ -58,16 +58,25 @@
             return `https://picsum.photos/800/600?random=${Math.floor(Math.random() * 1000)}`;
         }
 
-        // Load and display 3 random images
         function loadNewImages() {
             const container = document.getElementById('images');
             container.innerHTML = ''; // Clear existing images
 
             for (let i = 0; i < 3; i++) {
-                const img = document.createElement('img');
-                img.src = getRandomImageUrl();
+                const img = new Image();
                 img.alt = `Random art ${i + 1}`;
+                img.width = 600;
+                img.height = 425;
+                img.style.objectFit = 'cover';
+                img.style.margin = '10px';
+                img.style.borderRadius = '8px';
+                img.style.boxShadow = '0 0 8px rgba(0,0,0,0.5)';
+
+                // Append immediately so container always has exactly 3 images
                 container.appendChild(img);
+
+                // Set src after appending to start loading
+                img.src = getRandomImageUrl();
             }
         }
 
